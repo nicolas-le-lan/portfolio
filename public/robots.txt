@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /
+
+# Bloquer spécifiquement les robots d'IA connus
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
