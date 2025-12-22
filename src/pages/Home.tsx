@@ -86,7 +86,7 @@ export default function Home({ lang }: { lang: Language }) {
             <a href="https://github.com/nicolas-le-lan" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white hover:scale-110 transition transform duration-200">
               <Github size={28} />
             </a>
-            <button onClick={handleEmailClick} className="text-slate-400 hover:text-red-400 hover:scale-110 transition transform duration-200" title="Contactez-moi">
+            <button onClick={handleEmailClick} className="text-slate-400 hover:text-red-400 hover:scale-110 transition transform duration-200" title="Email">
               <Mail size={28} />
             </button>
           </div>
