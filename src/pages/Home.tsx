@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Award, Terminal, Cpu, ChevronDown, User, CheckCircle, Globe, LayoutGrid, Github, Linkedin, Mail } from 'lucide-react';
 import { content, iconMap, hardSkills } from '../data';
+import profilePic from '/profile.png';
 import type { Language } from '../types';
 
 const Typewriter = ({ text, delay = 50 }: { text: string; delay?: number }) => {
@@ -112,7 +113,7 @@ export default function Home({ lang }: { lang: Language }) {
                <div className="glass-panel p-6 h-full flex flex-col">
                   <div className="w-full aspect-square bg-slate-900/50 rounded mb-6 flex items-center justify-center border border-slate-700/50 shadow-inner group">
                     <img
-                      src="/profile.png"
+                      src={profilePic}
                       alt="Nicolas Le Lan"
                     />
                   </div>
