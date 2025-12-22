@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, MapPin, Award, Terminal, Cpu, ChevronDown, User, CheckCircle, Globe, LayoutGrid, Github, Linkedin, Mail } from 'lucide-react';
+import { 
+  ArrowRight, MapPin, Award, Terminal, Cpu, ChevronDown, 
+  User, CheckCircle, Globe, LayoutGrid, Github, Linkedin, Mail 
+} from 'lucide-react';
 import { content, iconMap, hardSkills } from '../data';
 import profilePic from '/profile.png';
 import type { Language } from '../types';
 
+// Composant pour l'effet d'écriture automatique
 const Typewriter = ({ text, delay = 50 }: { text: string; delay?: number }) => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Reset quand la langue change
   useEffect(() => {
     setCurrentText('');
     setCurrentIndex(0);
   }, [text]);
 
-  // Animation d'écriture
   useEffect(() => {
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
@@ -32,21 +34,32 @@ const Typewriter = ({ text, delay = 50 }: { text: string; delay?: number }) => {
 
 export default function Home({ lang }: { lang: Language }) {
   const t = content[lang];
-  const IconProject = (name: string) => { const Icon = iconMap[name]; return <Icon className="w-10 h-10 text-cyan-400 mb-4" />; };
+  
+  // Fonction de protection de l'email (Obfuscation)
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const user = "nicolaslelan13";
+    const domain = "gmail.com";
+    window.location.href = `mailto:${user}@${domain}`;
+  };
+
+  const IconProject = (name: string) => { 
+    const Icon = iconMap[name]; 
+    return <Icon className="w-10 h-10 text-cyan-400 mb-4" />; 
+  };
 
   return (
     <div className="w-full">
       
-      {/*HERO SECTION*/}
+      {/* SECTION HERO */}
       <section id="hero" className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 pt-16">
-        
         <motion.div 
           initial={{ y: 30, opacity: 0 }} 
           animate={{ y: 0, opacity: 1 }} 
           transition={{ duration: 0.8 }} 
           className="relative z-10 max-w-4xl mx-auto"
         >
-          {/* Badge Status */}
+          {/* Badge Date / Statut */}
           <div className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-cyan-950/30 border border-cyan-500/30 text-cyan-400 text-xs font-mono mb-8 backdrop-blur-md">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -65,7 +78,7 @@ export default function Home({ lang }: { lang: Language }) {
             <span className="animate-pulse text-cyan-400 ml-1">_</span>
           </h2>
 
-          {/* RÉSEAUX SOCIAUX */}
+          {/* Réseaux Sociaux avec protection email */}
           <div className="flex gap-6 justify-center mb-12">
             <a href="https://linkedin.com/in/le-lan-nicolas" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-cyan-400 hover:scale-110 transition transform duration-200">
               <Linkedin size={28} />
@@ -73,9 +86,9 @@ export default function Home({ lang }: { lang: Language }) {
             <a href="https://github.com/nicolas-le-lan" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white hover:scale-110 transition transform duration-200">
               <Github size={28} />
             </a>
-            <a href="mailto:nicolaslelan13@gmail.com" className="text-slate-400 hover:text-red-400 hover:scale-110 transition transform duration-200">
+            <button onClick={handleEmailClick} className="text-slate-400 hover:text-red-400 hover:scale-110 transition transform duration-200" title="Contactez-moi">
               <Mail size={28} />
-            </a>
+            </button>
           </div>
 
           <div className="flex flex-wrap gap-4 justify-center">
@@ -88,7 +101,6 @@ export default function Home({ lang }: { lang: Language }) {
           </div>
         </motion.div>
         
-        {/* Scroll Indicator */}
         <motion.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
@@ -99,7 +111,7 @@ export default function Home({ lang }: { lang: Language }) {
         </motion.div>
       </section>
 
-      {/*A PROPOS (TERMINAL)*/}
+      {/* SECTION A PROPOS */}
       <section id="about" className="section-padding">
         <div className="container-custom">
           <motion.div 
@@ -108,13 +120,14 @@ export default function Home({ lang }: { lang: Language }) {
             viewport={{ once: true }}
             className="flex flex-col lg:flex-row gap-12 items-stretch"
           >
-            {/* Stats Card */}
+            {/* Carte Profil */}
             <div className="w-full lg:w-1/3">
                <div className="glass-panel p-6 h-full flex flex-col">
-                  <div className="w-full aspect-square bg-slate-900/50 rounded mb-6 flex items-center justify-center border border-slate-700/50 shadow-inner group">
+                  <div className="w-full aspect-square bg-slate-900/50 rounded mb-6 flex items-center justify-center border border-slate-700/50 shadow-inner overflow-hidden group">
                     <img
                       src={profilePic}
                       alt="Nicolas Le Lan"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
                   <div className="space-y-4 mt-auto">
@@ -128,21 +141,19 @@ export default function Home({ lang }: { lang: Language }) {
                </div>
             </div>
 
-            {/* Terminal Window */}
+            {/* Fenêtre Terminal */}
             <div className="w-full lg:w-2/3 flex flex-col">
                <h3 className="heading-section text-left mb-6 flex items-center gap-3 !text-3xl">
                  <Terminal className="text-cyan-500" /> {t.sectionTitles.about}
                </h3>
                
                <div className="rounded-lg overflow-hidden shadow-2xl border border-slate-700 bg-slate-900/90 flex-grow flex flex-col hover:border-cyan-500/30 transition-colors">
-                 {/* Terminal Header */}
                  <div className="bg-slate-950 p-3 flex gap-2 items-center border-b border-slate-800">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
                     <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     <span className="text-xs text-slate-500 ml-4 font-mono">bash — user: nicolas — 80x24</span>
                  </div>
-                 {/* Terminal Body */}
                  <div className="p-6 text-slate-300 font-mono text-sm md:text-base leading-relaxed flex-grow">
                     {t.aboutMe?.text.map((paragraph, i) => (
                       <div key={i} className="mb-6">
@@ -168,7 +179,7 @@ export default function Home({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      {/*PROJETS*/}
+      {/* SECTION PROJETS */}
       <section id="projects" className="section-padding">
         <div className="container-custom">
           <h3 className="heading-section flex items-center justify-center gap-3">
@@ -182,7 +193,6 @@ export default function Home({ lang }: { lang: Language }) {
                   whileHover={{ y: -5 }} 
                   className="cyber-card h-full flex flex-col group relative overflow-hidden"
                 >
-                  {/* Decorative corner */}
                   <div className="absolute top-0 right-0 p-2 opacity-50">
                     <div className="w-16 h-16 border-t-2 border-r-2 border-cyan-500/20 rounded-tr-xl"></div>
                   </div>
@@ -215,7 +225,7 @@ export default function Home({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      {/*EDUCATION*/}
+      {/* SECTION EDUCATION */}
       <section id="education" className="section-padding">
         <div className="max-w-4xl mx-auto px-4">
           <h3 className="heading-section flex items-center justify-center gap-3">
@@ -231,13 +241,10 @@ export default function Home({ lang }: { lang: Language }) {
                 viewport={{ once: true }}
                 className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
               >
-                {/* Timeline Dot */}
                 <div className="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-700 bg-slate-950 group-hover:border-cyan-500 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 relative">
-                  <div className="absolute inset-0 bg-cyan-500 blur opacity-0 group-hover:opacity-20 transition"></div>
                   <Award size={18} className="text-slate-500 group-hover:text-cyan-400 relative z-10" />
                 </div>
                 
-                {/* Card */}
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-panel p-6 hover:bg-slate-800/40 transition">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 gap-2">
                      <h4 className="font-bold text-lg text-white">{edu.school}</h4>
@@ -257,7 +264,7 @@ export default function Home({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      {/*SKILLS*/}
+      {/* SECTION SKILLS */}
       <section id="skills" className="section-padding">
         <div className="container-custom">
           <h3 className="heading-section flex items-center justify-center gap-3">
@@ -265,7 +272,6 @@ export default function Home({ lang }: { lang: Language }) {
           </h3>
           
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Hard Skills */}
             <div className="glass-panel p-8">
               <h4 className="text-xl font-bold mb-8 text-cyan-400 flex items-center gap-3 border-b border-slate-700 pb-4">
                 <Terminal size={24}/> {t.skillsCategory.tools}
@@ -284,7 +290,6 @@ export default function Home({ lang }: { lang: Language }) {
               </div>
             </div>
 
-            {/* Langues */}
             <div className="glass-panel p-8">
               <h4 className="text-xl font-bold mb-8 text-cyan-400 flex items-center gap-3 border-b border-slate-700 pb-4">
                 <Globe size={24}/> {t.skillsCategory.languages}
@@ -296,17 +301,13 @@ export default function Home({ lang }: { lang: Language }) {
                       <span className="font-medium text-slate-200">{l.name}</span> 
                       <span className="text-xs text-slate-400 font-mono border border-slate-700 px-2 rounded">{l.level}</span>
                     </div>
-                    {/* Progress Bar Container */}
                     <div className="h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: l.level.includes('A1') ? '20%' : l.level.includes('A2') ? '40%' : l.level.includes('B1') ? '60%' : l.level.includes('B2') ? '80%' : l.level.includes('C1') ? '90%' : '100%' }}
-                        transition={{ duration: 1.5, delay: i * 0.1, ease: "easeOut" }}
+                        whileInView={{ width: l.level.includes('Natif') ? '100%' : l.level.includes('850') ? '85%' : l.level.includes('B1') ? '60%' : '40%' }}
+                        transition={{ duration: 1.5, delay: i * 0.1 }}
                         className="h-full bg-gradient-to-r from-blue-700 to-cyan-400 relative"
-                      >
-                         {/* Shine effect on bar */}
-                         <div className="absolute top-0 right-0 bottom-0 w-full bg-gradient-to-l from-white/20 to-transparent"></div>
-                      </motion.div>
+                      />
                     </div>
                   </div>
                 ))}
@@ -316,15 +317,11 @@ export default function Home({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      {/*CONCLUSION*/}
+      {/* SECTION CONCLUSION */}
       <section id="conclusion" className="py-24 border-t border-slate-800/50 bg-slate-950/30">
         <div className="max-w-4xl mx-auto px-4 text-center">
             <h3 className="heading-section mb-12">{t.sectionTitles.conclusion}</h3>
-            
             <div className="relative glass-panel p-8 md:p-12 overflow-hidden group hover:border-cyan-500/30 transition-colors">
-                <div className="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition duration-700"></div>
-                <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition duration-700"></div>
-                
                 <h4 className="text-xl font-bold text-cyan-400 mb-6 flex items-center justify-center gap-2">
                     <CheckCircle /> {t.sectionTitles.projection}
                 </h4>
