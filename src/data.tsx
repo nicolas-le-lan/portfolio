@@ -3,7 +3,7 @@ import { en } from './locales/en';
 import { es } from './locales/es';
 import { ja } from './locales/ja';
 import type { Language, PortfolioContent } from './types';
-import { Shield, Server, Cpu, Mountain, Plane, Heart, Terminal, Database, Globe, Network, GitGraph, Coffee, FileCode } from 'lucide-react';
+import { Shield, Server, Cpu, Mountain, Plane, Heart, Terminal, Database, Network, GitGraph, Coffee, FileCode } from 'lucide-react';
 
 export const content: Record<Language, PortfolioContent> = { fr, en, es, ja };
 

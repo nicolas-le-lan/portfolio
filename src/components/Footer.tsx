@@ -4,7 +4,6 @@ import type { Language } from '../types';
 
 export default function Footer({ lang }: { lang: Language }) {
   const t = content[lang];
-  const year = new Date().getFullYear();
 
   return (
     <footer className="relative border-t border-slate-800 bg-slate-950 pt-16 pb-8 mt-auto overflow-hidden">

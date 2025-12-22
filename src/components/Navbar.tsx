@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { content } from '../data';
 import type { Language } from '../types';
 

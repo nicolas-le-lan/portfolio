@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, MapPin, Award, Terminal, Cpu, Shield, ChevronDown, User, CheckCircle, Globe, LayoutGrid, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight, MapPin, Award, Terminal, Cpu, ChevronDown, User, CheckCircle, Globe, LayoutGrid, Github, Linkedin, Mail } from 'lucide-react';
 import { content, iconMap, hardSkills } from '../data';
 import type { Language } from '../types';
 
