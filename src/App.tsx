@@ -21,7 +21,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Router>
+    <Router basename="/portfolio/">
       <ScrollToTop />
       
       {/* Fond animé global */}
