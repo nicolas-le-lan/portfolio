@@ -1,7 +1,12 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { content } from '../data';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { Menu, X, FileText } from 'lucide-react'; // J'ai ajouté l'icône FileText pour le CV
 import type { Language } from '../types';
+
+// Import des nouvelles locales
+import { fr } from '../locales/fr';
+import { en } from '../locales/en';
+import { es } from '../locales/es';
+import { ja } from '../locales/ja';
 
 interface NavbarProps {
   lang: Language;
@@ -11,7 +16,10 @@ interface NavbarProps {
 }
 
 export default function Navbar({ lang, setLang, isMenuOpen, setIsMenuOpen }: NavbarProps) {
-  const t = content[lang];
+  // Mapping des données
+  const dataMap = { fr, en, es, ja };
+  const t = dataMap[lang];
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,28 +31,28 @@ export default function Navbar({ lang, setLang, isMenuOpen, setIsMenuOpen }: Nav
     { code: 'ja', label: 'JP', name: 'JP' },
   ];
 
-  // Fonction de navigation fluide
+  // Fonction de navigation fluide pour les ancres (#)
   const handleNavigation = (sectionId: string) => {
-    setIsMenuOpen(false); // Ferme le menu mobile si ouvert
+    setIsMenuOpen(false); // Ferme le menu mobile
 
-    // Si on n'est pas sur la page d'accueil, on y va d'abord
+    // Si on est sur la page CV (/resume), on doit retourner à l'accueil
     if (location.pathname !== '/') {
       navigate('/');
-      // Petit délai pour laisser le temps à la page de charger avant de scroller
+      // Petit délai pour laisser le temps à la page de charger
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) element.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     } else {
-      // Si on est déjà sur l'accueil, on scroll direct
+      // Si on est déjà sur l'accueil
       const element = document.getElementById(sectionId);
       if (element) element.scrollIntoView({ behavior: 'smooth' });
-      else window.scrollTo({ top: 0, behavior: 'smooth' }); // Fallback vers le haut
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   return (
-    <nav className="fixed w-full bg-slate-950/90 backdrop-blur-md border-b border-slate-800 z-50 h-16">
+    <nav className="fixed w-full bg-slate-950/90 backdrop-blur-md border-b border-slate-800 z-40 h-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex justify-between items-center h-full">
           
@@ -58,9 +66,9 @@ export default function Navbar({ lang, setLang, isMenuOpen, setIsMenuOpen }: Nav
             </span>
           </button>
           
-          {/* MENU DESKTOP (Le Sommaire est ici) */}
+          {/* MENU DESKTOP */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* On map les sections pour créer le sommaire */}
+            {/* Liens d'ancrage */}
             {[
               { id: 'about', label: t.sectionTitles.about },
               { id: 'projects', label: t.sectionTitles.projects },
@@ -75,6 +83,14 @@ export default function Navbar({ lang, setLang, isMenuOpen, setIsMenuOpen }: Nav
                 {item.label}
               </button>
             ))}
+
+            {/* LIEN VERS LE CV (Nouveau) */}
+            <Link 
+              to="/resume"
+              className="flex items-center gap-2 px-3 py-1.5 rounded border border-cyan-500/30 text-cyan-400 hover:bg-cyan-950/50 hover:shadow-[0_0_10px_rgba(34,211,238,0.2)] transition-all text-sm font-bold"
+            >
+               <FileText size={14} /> CV
+            </Link>
             
             <div className="h-4 w-px bg-slate-800 mx-2"></div>
 
@@ -97,7 +113,12 @@ export default function Navbar({ lang, setLang, isMenuOpen, setIsMenuOpen }: Nav
           </div>
 
           {/* BOUTON MOBILE */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-4">
+            {/* Petit bouton CV mobile */}
+            <Link to="/resume" className="text-cyan-400">
+                <FileText size={20} />
+            </Link>
+
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-cyan-400 p-2">
               {isMenuOpen ? <X /> : <Menu />}
             </button>
@@ -122,6 +143,15 @@ export default function Navbar({ lang, setLang, isMenuOpen, setIsMenuOpen }: Nav
                 {item.label}
               </button>
             ))}
+            
+            <Link 
+                to="/resume" 
+                className="text-left text-lg font-medium text-cyan-400 py-2 border-b border-slate-800/50 flex items-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+            >
+                <FileText size={18} /> Voir mon CV
+            </Link>
+
             {/* Langues Mobile */}
             <div className="flex gap-4 pt-2 justify-center">
               {languages.map((l) => (

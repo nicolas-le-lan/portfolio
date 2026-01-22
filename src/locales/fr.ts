@@ -1,6 +1,9 @@
 import type { PortfolioContent } from '../types';
 
 export const fr: PortfolioContent = {
+  // =================================================================
+  // PARTIE PORTFOLIO (SITE WEB)
+  // =================================================================
   meta: { date: "Décembre 2025" },
   nav: { 
     home: "Accueil", 
@@ -87,7 +90,7 @@ export const fr: PortfolioContent = {
         "Documentation technique structurée garantissant la pérennité de l'outil de validation."
       ]
     },
-{
+    {
       id: 3,
       title: "Optimisation Thermique Résidentielle",
       company: "Projet ESIEA (CAP Projet)",
@@ -146,5 +149,108 @@ export const fr: PortfolioContent = {
     rights: "© 2025 Nicolas LE LAN. Tous droits réservés.",
     operational: "Stage Disponible (Avril 2026)",
     secure: "Système Sécurisé"
+  },
+
+  // =================================================================
+  // PARTIE RESUME (CV IMPRIMABLE)
+  // =================================================================
+  resume: {
+    labels: {
+      download: "Imprimer / PDF",
+      back: "Retour au Portfolio",
+      skills: "LOGICIELS MAÎTRISÉS",
+      langs: "LANGUES",
+      exp: "EXPÉRIENCES PROFESSIONNELLES",
+      edu: "FORMATIONS",
+      interests: "CENTRES D'INTÉRÊT",
+      contact_note: "CV généré depuis le portfolio."
+    },
+    profile: {
+      name: "Nicolas LE LAN",
+      title: "STAGIAIRE INGÉNIEUR CYBERSÉCURITÉ",
+      summary: "Étudiant en recherche de stage de 4 mois à partir du 6 Avril 2026 dans le domaine de l'informatique ou secteurs connexes. Sérieux et motivé, je suis habitué à travailler en équipe et à m'adapter rapidement à des environnements exigeants. Je suis prêt à m'investir pleinement pour contribuer efficacement à vos projets.",
+      location: "Marseille, France",
+      driverLicense: "Permis B"
+    },
+    contact: {
+      linkedin_url: "https://linkedin.com/in/le-lan-nicolas",
+      github_url: "https://github.com/nicolas-le-lan",
+      email_placeholder: "Contact via LinkedIn",
+      phone_placeholder: "06 79 16 96 86"
+    },
+    skills: [
+      "Suite Office", "Python", "LaTeX", "Docker", 
+      "C", "Wireshark", "C#", "Packet Tracer", 
+      "Java", "Git", "Stormshield Network Administrator"
+    ],
+    languages: [
+      { name: "Anglais", level: "B2 (TOEIC: 850)" },
+      { name: "Espagnol", level: "B1" },
+      { name: "Japonais", level: "A2" },
+      { name: "Français", level: "Langue maternelle" }
+    ],
+    experience: [
+      {
+        role: "Technicien Informatique",
+        company: "SNS SOLUTIONS",
+        location: "Marseille",
+        date: "2024 (Stage 4 mois + CDD 1 mois)",
+        details: [
+          "Support Technique N1 : Prise en charge et diagnostic des incidents.",
+          "Résolution d'incidents : Dépannage matériel et logiciel à distance.",
+          "Gestion de parc : Préparation, masterisation et déploiement d'une trentaine de postes de travail (PC fixes et portables) pour les utilisateurs B2B.",
+          "Suivi et Documentation : Utilisation d'un outil de ticketing interne pour la traçabilité des incidents et enrichissement de la base de connaissances."
+        ],
+        tags: []
+      },
+      {
+        role: "Assistant Ingénieur Cybersécurité",
+        company: "EDF - Division Ingénierie Nucléaire",
+        location: "Marseille",
+        date: "2023 (Stage 2 mois)",
+        details: [
+          "Projet de Virtualisation : Reproduction intégrale de la chaîne CAO sous VirtualBox pour créer un environnement de test sécurisé et iso-production.",
+          "Documentation Technique : Rédaction de procédures d'installation et d'exploitation pour assurer la pérennité de la solution."
+        ],
+        tags: []
+      }
+    ],
+    education: [
+      {
+        school: "ESIEA Paris",
+        degree: "Cycle Ingénieur (Majeure Cybersécurité)",
+        location: "Paris",
+        date: "2024 - 2027",
+        details: [
+          "Cours: Programmation Orientée Objet (Java), C, Python, Base de données Oracle SQL, Cybersécurité.",
+          "Semestre International (SeoulTech, Corée du Sud): Cursus en anglais axé sur le développement Backend (Server-side), Bases de données et Python.",
+          "Projet IoT (Flutter/Dart): Solution de gestion et placement thermique. Conception UI/UX.",
+          "Algorithmique Avancée (C): Analyseur de texte, gestion dynamique de la mémoire."
+        ]
+      },
+      {
+        school: "IUT de Béziers",
+        degree: "BUT Réseaux & Télécommunication (Spécialité Cyber)",
+        location: "Béziers",
+        date: "2022 - 2024",
+        details: [
+          "Cours: Sécurité des systèmes d'information, conception et installation de réseaux.",
+          "Challenge SNS Security: Simulation d'une campagne de phishing et forensic.",
+          "Déploiement FTTH: Étude d'ingénierie pour le raccordement fibre optique."
+        ]
+      },
+      {
+        school: "EPITA Lyon",
+        degree: "Cycle Préparatoire Ingénieur",
+        location: "Lyon",
+        date: "2019 - 2022",
+        details: [
+          "Cours: Algorithmie, Programmation, Mathématiques, Physique.",
+          "Semestre International (IT Sligo, Irlande): Backend, UX/UI, Analyse statistique.",
+          "Projets C/C#: OCR, Résolveur de Sudoku, Développement de Jeux Vidéo."
+        ]
+      }
+    ],
+    interests: "Volontariat (Banque Alimentaire), Escalade, Voyages (Europe, Canada, USA, Chine, Japon, Corée du Sud)."
   }
 };

@@ -1,5 +1,6 @@
 export type Language = 'fr' | 'en' | 'es' | 'ja';
 
+// --- Types existants du Portfolio ---
 export interface Project {
   id: number;
   title: string;
@@ -31,6 +32,56 @@ export interface Interest {
   iconName: 'mountain' | 'plane' | 'heart';
 }
 
+// --- Types pour le CV (Resume) ---
+export interface ResumeExperience {
+  role: string;
+  company: string;
+  location: string;
+  date: string;
+  details: string[]; // Liste à puces pour l'expérience
+  tags: string[];
+}
+
+export interface ResumeEducation {
+  school: string;
+  degree: string;
+  location: string;
+  date: string;
+  details: string[]; 
+}
+
+export interface ResumeData {
+  labels: {
+    download: string;
+    back: string;
+    skills: string;
+    langs: string;
+    exp: string;
+    edu: string;
+    interests: string;
+    contact_note: string;
+  };
+  profile: {
+    name: string;
+    title: string;
+    summary: string;
+    location: string;
+    driverLicense?: string; // Permis B
+  };
+  contact: {
+    linkedin_url: string;
+    github_url: string;
+    email_placeholder: string;
+    phone_placeholder: string; // Téléphone
+  };
+  skills: string[];
+  languages: { name: string; level: string }[];
+  experience: ResumeExperience[];
+  education: ResumeEducation[];
+  interests: string;
+}
+
+// --- Type Principal Global ---
 export interface PortfolioContent {
   meta: { date: string };
   nav: { home: string; projects: string; skills: string; education: string; contact: string; role: string };
@@ -75,4 +126,5 @@ export interface PortfolioContent {
     operational: string;
     secure: string;
   };
+  resume: ResumeData;
 }

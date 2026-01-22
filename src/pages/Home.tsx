@@ -304,7 +304,7 @@ export default function Home({ lang }: { lang: Language }) {
                     <div className="h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: l.level.includes('Natif') ? '100%' : l.level.includes('850') ? '85%' : l.level.includes('B1') ? '60%' : '40%' }}
+                        whileInView={{ width: l.level.includes("A1") ? "25%" : l.level.includes("A2") ? "40%" : l.level.includes("B1") ? "60%" : l.level.includes("B2") ? "75%" : l.level.includes("C1") ? "90%" :  "100%" }}
                         transition={{ duration: 1.5, delay: i * 0.1 }}
                         className="h-full bg-gradient-to-r from-blue-700 to-cyan-400 relative"
                       />
