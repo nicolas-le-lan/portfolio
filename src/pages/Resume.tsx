@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Printer, MapPin, Linkedin, Github, 
-  Terminal, Shield, Globe, Briefcase, GraduationCap, Mail, User, Calendar, Phone, Car, Send, ExternalLink
+  Terminal, Globe, Briefcase, GraduationCap, Mail, User, Calendar, Phone, Car, Send, ExternalLink
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
